@@ -16,10 +16,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragment1 = new Fragment();
-        fragment2 = new Fragment();
-        fragment3 = new Fragment();
-        fragment4 = new Fragment();
+        fragment1 = new Fragment1();
+        fragment2 = new Fragment_2();
+        fragment3 = new Fragment_3();
+        fragment4 = new Fragment_4();
 
         fragmentManager = getSupportFragmentManager();
 
