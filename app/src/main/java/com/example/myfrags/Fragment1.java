@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +15,19 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment1 extends Fragment {
+
+    public interface onButtonClickListener{
+        public void onButtonClickShuffle();
+        public void onButtonClickClockwise();
+        public void onButtonClickHide();
+        public void onButtonClickRestore();
+    }
+
+    private onButtonClickListener callback = null;
+
+    public void setOnButtonClickListener(onButtonClickListener callback){
+        this.callback = callback;
+    }
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +73,44 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_1, container, false);
+        /*return inflater.inflate(R.layout.fragment_1, container, false);*/
+        View view = inflater.inflate(R.layout.fragment_1, container, false);
+
+        Button buttonShuffle = (Button) view.findViewById(R.id.button);
+        Button buttonClockwise = (Button) view.findViewById(R.id.button2);
+        Button buttonHide = (Button) view.findViewById(R.id.button3);
+        Button buttonRestore = (Button) view.findViewById(R.id.button4);
+
+
+        buttonShuffle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callback != null) callback.onButtonClickShuffle();
+            }
+        });
+
+        buttonClockwise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callback != null) callback.onButtonClickClockwise();
+            }
+        });
+
+        buttonHide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callback != null) callback.onButtonClickHide();
+            }
+        });
+
+        buttonRestore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (callback != null) callback.onButtonClickRestore();
+            }
+        });
+
+        return view;
     }
+
 }
